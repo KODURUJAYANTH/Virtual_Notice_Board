@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">{{ role|capitalize }} Dashboard</h2>
+
+{% if role == 'faculty' %}
+<a href="/add_notice" class="btn btn-primary mb-3">Submit a New Notice</a>
+{% endif %}
+
+{% if notices %}
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for notice in notices %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ notice.title }}</h5>
+          <p class="card-text">{{ notice.content }}</p>
+
+          {% if role == 'student' %}
+          <p class="text-muted">
+            <small>Posted by: {{ notice.name }}</small><br>
+            <small>Post Date: {{ notice.post_date }}</small>
+          </p>
+          {% else %}
+          <p class="text-muted"><small>Status: {{ notice.status|capitalize }}</small></p>
+          <p class="text-muted"><small>Post Date: {{ notice.post_date }}</small></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-muted">No notices found.</p>
+{% endif %}
+{% endblock %}

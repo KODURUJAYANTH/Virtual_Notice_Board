@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Approved Notices</h2>
+
+{% if notices %}
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for notice in notices %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ notice.title }}</h5>
+          <p class="card-text">{{ notice.content }}</p>
+          <p class="text-muted">
+            <small>Posted by: {{ notice.name }}</small><br>
+            <small>Post Date: {{ notice.post_date }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-muted">No approved notices available yet.</p>
+{% endif %}
+{% endblock %}

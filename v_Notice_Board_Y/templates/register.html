@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Registration</h2>
+
+<!-- Error message if email already registered -->
+{% if error %}
+<div class="alert alert-danger text-center" style="max-width: 600px; margin: auto;">
+  {{ error }}
+</div>
+{% endif %}
+
+<form method="POST" class="card p-4 shadow-sm" style="max-width: 600px; margin: auto;">
+  <div class="mb-3">
+    <label for="name" class="form-label">Full Name:</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email Address:</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <div class="mb-3">
+    <label for="role" class="form-label">Register As:</label>
+    <select class="form-select" id="role" name="role" required>
+      <option value="">Select Role</option>
+      <option value="student">Student</option>
+      <option value="faculty">Faculty</option>
+    </select>
+  </div>
+  <div class="d-grid">
+    <button type="submit" class="btn btn-success">Register</button>
+  </div>
+</form>
+{% endblock %}
